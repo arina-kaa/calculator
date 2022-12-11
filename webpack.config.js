@@ -1,8 +1,9 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
 	entry: './src/index.ts',
 	devtool: 'inline-source-map',
+	stats: 'errors-warnings',
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js'],
 	},
@@ -24,4 +25,4 @@ module.exports = {
 			},
 		],
 	},
-};
+}

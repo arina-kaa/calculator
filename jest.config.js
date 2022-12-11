@@ -4,16 +4,16 @@
  */
 
 module.exports = {
-    clearMocks: true,
-    collectCoverage: true,
-    coverageDirectory: 'coverage',
-    coverageProvider: 'v8',
-    collectCoverageFrom: ['./src/**'],
-    coverageThreshold: {
-        global: {
-            branches: 80,
-            functions: 70,
-            lines: 80,
-        },
-    },
-};
+	clearMocks: true,
+	collectCoverage: true,
+	coverageDirectory: 'coverage',
+	coverageProvider: 'v8',
+	collectCoverageFrom: ['./src/**'],
+	coverageThreshold: {
+		global: {
+			branches: 80,
+			functions: 70,
+			lines: 80,
+		},
+	},
+}
