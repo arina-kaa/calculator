@@ -3,17 +3,22 @@ export enum TokenType {
 	OPERATOR = 'operator',
 }
 
-interface NumberToken {
+export interface NumberToken {
 	type: TokenType.NUMBER
 	value: number
 }
 
-interface OperatorToken {
+export type LeftOperator = '+' | '-' | '*' | '/' | '^'
+export type RightOperator = '**' | '!'
+export type MathOperator = LeftOperator | RightOperator
+export type Operator = MathOperator | '(' | ')'
+
+export interface OperatorToken {
 	type: TokenType.OPERATOR
-	value: '+' | '-' | '*' | '/' | '**' | '^' | '!' | '(' | ')'
+	value: Operator
 }
 
-export type Token = NumberToken | OperatorToken
+type Token = NumberToken | OperatorToken
 export type Tokens = Token[]
 
 const isOperator = (ch: string) => /[+\-*/^!()]/.test(ch)
