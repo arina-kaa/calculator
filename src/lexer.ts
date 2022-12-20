@@ -8,9 +8,7 @@ export interface NumberToken {
 	value: number
 }
 
-export type LeftOperator = '+' | '-' | '*' | '/' | '^'
-export type RightOperator = '**' | '!'
-export type MathOperator = LeftOperator | RightOperator
+export type MathOperator = '+' | '-' | '*' | '/' | '^' | '**' | '!'
 export type Operator = MathOperator | '(' | ')'
 
 export interface OperatorToken {
@@ -18,7 +16,7 @@ export interface OperatorToken {
 	value: Operator
 }
 
-type Token = NumberToken | OperatorToken
+export type Token = NumberToken | OperatorToken
 export type Tokens = Token[]
 
 const isOperator = (ch: string) => /[+\-*/^!()]/.test(ch)

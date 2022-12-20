@@ -1,47 +1,32 @@
-import { MathOperator } from './lexer'
 import { checkNever } from './checkNever'
+import { Tree } from './parser'
 
-export const add = (a: number, b: number) => a + b
-export const subtract = (a: number, b: number) => a - b
-export const multiply = (a: number, b: number) => a * b
-export const divide = (a: number, b: number) => a / b
 export const pow = (a: number, b: number) => Math.pow(a, b)
 export const square = (a: number) => Math.pow(a, 2)
 export const factorial = (a: number): number => (a !== 1 ? a * factorial(a - 1) : 1)
 
-export const getLeftOperatorFn = (operator: MathOperator) => {
-	switch (operator) {
-		case '+':
-			return add
-		case '-':
-			return subtract
-		case '*':
-			return multiply
-		case '/':
-			return divide
-		case '^':
-			return pow
-		case '**':
-		case '!':
-			return undefined
-		default:
-			checkNever(operator)
+export const calc = (tree: Tree): number => {
+	if (typeof tree === 'number') {
+		return tree
 	}
-}
 
-export const getRightOperatorFn = (operator: MathOperator) => {
-	switch (operator) {
+	switch (tree.operation) {
 		case '+':
+			return calc(tree.left) + calc(tree.right)
 		case '-':
+			return calc(tree.left) - calc(tree.right)
 		case '*':
+			return calc(tree.left) * calc(tree.right)
 		case '/':
+			return calc(tree.left) / calc(tree.right)
 		case '^':
-			return undefined
+			return pow(calc(tree.left), calc(tree.right))
 		case '**':
-			return square
+			return square(calc(tree.left))
 		case '!':
-			return factorial
+			return factorial(calc(tree.left))
 		default:
-			checkNever(operator)
+			checkNever(tree)
+			throw new Error('Unexpected operation')
 	}
 }
