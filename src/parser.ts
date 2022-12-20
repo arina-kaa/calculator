@@ -103,7 +103,6 @@ export const parser = (tokens: Tokens): Tree => {
 		if (token && token.type === TokenType.OPERATOR && token.value === '(') {
 			i++
 			const expr = parseExpression(tokens[i])
-			console.log(i)
 			if (i === tokens.length || tokens[i].value !== ')') {
 				throw new Error(`Unexpected token ${tokens[i].value} in ${i}. Expected: )`)
 			} else {

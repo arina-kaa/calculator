@@ -1,7 +1,7 @@
 import { createInterface } from 'readline'
 import { lexer } from './lexer'
 import { parser } from './parser'
-import { calc } from './mathOperations'
+import { calc } from './calc'
 
 const rl = createInterface({
 	input: process.stdin,

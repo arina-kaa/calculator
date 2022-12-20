@@ -9,6 +9,7 @@ module.exports = {
 	coverageDirectory: 'coverage',
 	coverageProvider: 'v8',
 	collectCoverageFrom: ['./src/**'],
+	coveragePathIgnorePatterns: ['/node_modules/', 'index.ts'],
 	coverageThreshold: {
 		global: {
 			branches: 80,

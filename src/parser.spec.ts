@@ -4,13 +4,13 @@ import { createNumber, createOperator } from './lexer'
 
 describe('tokens parser', () => {
 	test('number', () => {
-		const p = parser([createNumber('1')])
-		expect(p).toEqual(1)
+		const tree = parser([createNumber('1')])
+		expect(tree).toEqual(1)
 	})
 
 	test('add', () => {
-		const p = parser([createNumber('1'), createOperator('+'), createNumber('2')])
-		expect(p).toEqual({
+		const tree = parser([createNumber('1'), createOperator('+'), createNumber('2')])
+		expect(tree).toEqual({
 			operation: '+',
 			left: 1,
 			right: 2,
@@ -18,66 +18,66 @@ describe('tokens parser', () => {
 	})
 
 	test('subtract', () => {
-		const p = parser([createNumber('1'), createOperator('-'), createNumber('2')])
-		expect(p).toEqual({
+		const tree = parser([createNumber('3'), createOperator('-'), createNumber('1')])
+		expect(tree).toEqual({
 			operation: '-',
-			left: 1,
-			right: 2,
+			left: 3,
+			right: 1,
 		})
 	})
 
 	test('multiply', () => {
-		const p = parser([createNumber('1'), createOperator('*'), createNumber('2')])
-		expect(p).toEqual({
+		const tree = parser([createNumber('2'), createOperator('*'), createNumber('3')])
+		expect(tree).toEqual({
 			operation: '*',
-			left: 1,
-			right: 2,
+			left: 2,
+			right: 3,
 		})
 	})
 
 	test('divide', () => {
-		const p = parser([createNumber('1'), createOperator('/'), createNumber('2')])
-		expect(p).toEqual({
+		const tree = parser([createNumber('4'), createOperator('/'), createNumber('2')])
+		expect(tree).toEqual({
 			operation: '/',
-			left: 1,
+			left: 4,
 			right: 2,
 		})
 	})
 
 	test('pow', () => {
-		const p = parser([createNumber('1'), createOperator('^'), createNumber('2')])
-		expect(p).toEqual({
+		const tree = parser([createNumber('2'), createOperator('^'), createNumber('3')])
+		expect(tree).toEqual({
 			operation: '^',
-			left: 1,
-			right: 2,
+			left: 2,
+			right: 3,
 		})
 	})
 
 	test('square', () => {
-		const p = parser([createNumber('1'), createOperator('**')])
-		expect(p).toEqual({
+		const tree = parser([createNumber('3'), createOperator('**')])
+		expect(tree).toEqual({
 			operation: '**',
-			left: 1,
+			left: 3,
 		})
 	})
 
 	test('factorial', () => {
-		const p = parser([createNumber('1'), createOperator('!')])
-		expect(p).toEqual({
+		const tree = parser([createNumber('3'), createOperator('!')])
+		expect(tree).toEqual({
 			operation: '!',
-			left: 1,
+			left: 3,
 		})
 	})
 
 	test('closed parentheses', () => {
-		const p = parser([
+		const tree = parser([
 			createOperator('('),
 			createNumber('1'),
 			createOperator('+'),
 			createNumber('2'),
 			createOperator(')'),
 		])
-		expect(p).toEqual({
+		expect(tree).toEqual({
 			operation: '+',
 			left: 1,
 			right: 2,
@@ -96,7 +96,7 @@ describe('tokens parser', () => {
 	})
 
 	test('subtract sum', () => {
-		const p = parser([
+		const tree = parser([
 			createNumber('5'),
 			createOperator('-'),
 			createOperator('('),
@@ -105,7 +105,7 @@ describe('tokens parser', () => {
 			createNumber('2'),
 			createOperator(')'),
 		])
-		expect(p).toEqual({
+		expect(tree).toEqual({
 			operation: '-',
 			left: 5,
 			right: {
@@ -117,7 +117,7 @@ describe('tokens parser', () => {
 	})
 
 	test('multiply division', () => {
-		const p = parser([
+		const tree = parser([
 			createNumber('2'),
 			createOperator('*'),
 			createOperator('('),
@@ -126,7 +126,7 @@ describe('tokens parser', () => {
 			createNumber('1'),
 			createOperator(')'),
 		])
-		expect(p).toEqual({
+		expect(tree).toEqual({
 			operation: '*',
 			left: 2,
 			right: {
@@ -138,7 +138,7 @@ describe('tokens parser', () => {
 	})
 
 	test('sum different', () => {
-		const p = parser([
+		const tree = parser([
 			createNumber('1'),
 			createOperator('+'),
 			createNumber('2'),
@@ -147,7 +147,7 @@ describe('tokens parser', () => {
 			createOperator('+'),
 			createNumber('4'),
 		])
-		expect(p).toEqual({
+		expect(tree).toEqual({
 			operation: '+',
 			left: 1,
 			right: {
