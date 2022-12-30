@@ -7,21 +7,20 @@ module.exports = {
 	},
 	extends: [
 		'eslint:recommended',
+		'plugin:@typescript-eslint/eslint-recommended',
 		'plugin:@typescript-eslint/recommended',
 		'plugin:jest/recommended',
 	],
-	plugins: ['@typescript-eslint', 'prettier', 'jest'],
+	plugins: ['@typescript-eslint', 'jest'],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaVersion: 6,
 		sourceType: 'module',
 	},
-	rules: {
-		'prettier/prettier': 'error',
-	},
+	rules: {},
 	overrides: [
 		{
-			files: ['webpack.config.js'],
+			files: ['webpack.config.js', 'scripts/calculator.js'],
 			rules: {
 				'@typescript-eslint/no-var-requires': ['off'],
 			},

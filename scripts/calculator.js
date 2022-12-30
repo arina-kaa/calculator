@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const { createInterface } = require('readline')
 const { start } = require('../dist/index')
 
