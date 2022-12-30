@@ -8,8 +8,8 @@ const rl = createInterface({
 })
 
 const question = () =>
-	new Promise((resolve) => {
-		rl.question('> ', (expression) => {
+	new Promise(resolve => {
+		rl.question('> ', expression => {
 			const result = start(expression)
 
 			console.log(result)

@@ -17,15 +17,7 @@ module.exports = {
 		sourceType: 'module',
 	},
 	rules: {
-		'max-len': [
-			'error',
-			{
-				code: 100,
-			},
-		],
 		'prettier/prettier': 'error',
-		semi: ['error', 'never'],
-		quotes: ['error', 'single'],
 	},
 	overrides: [
 		{

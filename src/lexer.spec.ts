@@ -17,7 +17,7 @@ describe('tokens creation', () => {
 		expect(() => createNumber('+')).toThrow()
 	})
 
-	test.each(['+', '-', '*', '/', '**', '^', '!', '(', ')'])('create operator %s', (operator) => {
+	test.each(['+', '-', '*', '/', '**', '^', '!', '(', ')'])('create operator %s', operator => {
 		const result = createOperator(operator)
 		expect(result).toEqual({
 			type: TokenType.OPERATOR,
