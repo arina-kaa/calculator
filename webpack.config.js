@@ -2,7 +2,6 @@ const path = require('path')
 
 module.exports = {
 	entry: './src/index.ts',
-	devtool: 'inline-source-map',
 	stats: 'errors-warnings',
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js'],
@@ -15,12 +14,7 @@ module.exports = {
 		rules: [
 			{
 				test: /\.tsx?$/,
-				exclude: /node_modules/,
-				loader: 'babel-loader',
-			},
-			{
-				test: /\.tsx?$/,
-				use: 'ts-loader',
+				use: 'babel-loader',
 				exclude: /node_modules/,
 			},
 		],
