@@ -26,7 +26,6 @@ export const calc = (tree: Tree): number => {
 		case '!':
 			return factorial(calc(tree.left))
 		default:
-			checkNever(tree)
-			throw new Error('Unexpected operation')
+			return checkNever(tree, `Unexpected operation: ${tree}`)
 	}
 }
