@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { createInterface } = require('readline')
 const { start } = require('../dist/index')
 
@@ -17,6 +18,7 @@ const question = () =>
 	})
 
 async function app() {
+	// eslint-disable-next-line no-constant-condition
 	while (true) {
 		await question()
 	}

@@ -1,16 +1,17 @@
 import { MathOperator, Token, Tokens, TokenType } from './lexer'
 
-export type Tree =
-	| {
-			operation: MathOperator
-			left: Tree
-			right: Tree
-	  }
-	| {
-			operation: '!' | '**'
-			left: Tree
-	  }
-	| number
+interface MathBinaryValue {
+	operation: MathOperator
+	left: Tree
+	right: Tree
+}
+
+interface MathUnaryValue {
+	operation: '!' | '**'
+	left: Tree
+}
+
+export type Tree = MathBinaryValue | MathUnaryValue | number
 
 export const parser = (tokens: Tokens): Tree => {
 	let i = 0
@@ -116,7 +117,7 @@ export const parser = (tokens: Tokens): Tree => {
 			return token.value
 		}
 
-		throw new Error(`Unknown error`)
+		throw new Error('Unknown error')
 	}
 
 	return parseExpression(tokens[i])
